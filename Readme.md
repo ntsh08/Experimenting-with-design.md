@@ -1,6 +1,6 @@
 ![Experimenting with Design.md](assets/header.png)
 
-# What is Design.md?
+# Experimenting with Design.md
 
 A few weeks back, I kept seeing tweets about Design.md all over my feed.
 
@@ -81,7 +81,8 @@ Full protocol: [`experiment/run-protocol.md`](experiment/run-protocol.md).
 
 ### The Results
 
-The numbers surprised me.
+![Experimenting with Design.md](assets/result1.png)
+![Experimenting with Design.md](assets/result2.png)
 
 | | Score | |
 |---|:-:|:-:|
@@ -99,8 +100,9 @@ conventions:
 - White page background
 - New tasks appended to the bottom
 
-These are simply the common conventions models have learned from thousands of
-existing interfaces. Meanwhile, all three agents run *with* `design.md` read it
+These are simply the common conventions models have learned from thousands of existing interfaces. 
+
+Meanwhile, all three agents run *with* `design.md` read it
 and produced nearly identical applications — same layout, same dialog structure,
 same component variants, almost identical wording.
 
@@ -119,9 +121,11 @@ The experiment changed how I think about design documentation.
 When industry convention already matched my design, the document added almost nothing — all agents correctly muted completed tasks, used the EmptyState component, and respected the existing tokens, with or without the doc. They didn't need documentation because those choices were already obvious. Documentation became valuable only where my product intentionally broke from convention.
 
 **2. The biggest benefit is reproducibility, not quality:** 
+
 The `design.md` runs produced almost identical outputs across all three repeats. The runs without it weren't *bad* — the problem was that every run represented a slightly different product.
 
 **3. Agents never leave blanks:** 
+
 Whenever the design system had a hole, every agent invented something to fill it:
 
 - There was no Priority Select component — every run quietly built one, the same way.
