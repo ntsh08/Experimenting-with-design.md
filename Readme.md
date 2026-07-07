@@ -2,223 +2,160 @@
 
 # What is `design.md`?
 
-Few weeks back, I kept seeing tweets about `design.md` all over my feed.
+A few weeks back, I kept seeing tweets about `design.md` all over my feed.
 
-*"You should ship a design.md with your design system."*
+> *"You should ship a design.md with your design system."*
+>
+> *"AI agents understand products much better if you have one."*
 
-*"AI agents understand products much better if you have one."*
+I didn't actually understand why — so I thought I'd build something to test it.
 
-I didn't actually understand why. So I though build something to test it.
-
-Note: Check this link for project files and detailed results.
----
+This repo is the experiment: the templates, the six agent runs, the scoring, and
+the results. The sections below walk through it; the linked files have the full
+detail.
 
 ## The question
 
-If a project already has a mature design system, semantic tokens, reusable components, and good code, what exactly is left for a markdown file to do?
+If a project already has a mature design system — semantic tokens, reusable
+components, good code — what exactly is left for a markdown file to do?
 
-An AI agent can already see your design system, inspect every component.
+An AI agent can already see your design system and inspect every component. It
+can open `Button.jsx`, see every available variant, read the spacing tokens, and
+understand the API of every component.
 
-It can open `Button.jsx`, see every available variant, inspect the spacing tokens, read the CSS variables, and understand the API of every component.
+So what information is actually missing? Would an agent build something
+genuinely different with `design.md` than without it?
 
-So what information is missing? Would an agent build something genuinely different with it versus without it?
+## The idea
 
----
+The plan was simple: build a to-do list application, twice.
 
-# The Idea
+| | Contains |
+|---|---|
+| **To-Do (With Design.md)** | components + variables + a `design.md` file |
+| **To-Do (Without Design.md)** | components + variables, and nothing else |
 
-My plan was simple: build a to-do list application, twice.
+Both versions share the exact same coded component library and the same CSS
+variables. The only difference is that one folder has a `design.md` in it. I then
+gave an AI agent the same prompt against both versions:
 
-Version 1: Components + variables + a design.md file.
+> Build a to-do application with add, delete, complete, filtering, priorities,
+> confirmation before delete, and empty states.
 
-Version 2: Components + variables, and nothing else.
-
-Both versions get the exact same coded component library and the same CSS variables. The only difference is that one folder has a design.md in it. Then, I give an AI agent the same prompt to both versions:
-
-> Build a to-do application with add, delete, complete, filtering, priorities, confirmation before delete, and empty states.
-
-No design instructions.
-
-No screenshots.
-
-No examples.
-
-The only variable was the presence of `design.md`.
-
-For detailed prompt, check task-prompt.md
----
+No design instructions. No screenshots. No examples. The only variable was the
+presence of `design.md`. Full prompt: [`experiment/task-prompt.md`](experiment/task-prompt.md).
 
 ## Making the experiment measurable
 
-To measure the differences between both versions, I intentionally designed situations where the component library allowed multiple valid choices while the product only wanted one.
+To measure the difference between the two versions, I intentionally designed
+situations where the component library allowed multiple valid choices, while the
+product only wanted one — call them **intent gaps**. For example:
 
-For example:
+- The Button component supports a `danger` variant anywhere. My design only wants
+  it inside confirmation dialogs.
+- Badge supports five colors. My design only wants gray, amber, and red for task
+  priorities.
+- Cards support `flat` and `elevated` variants. My design reserves elevation only
+  for overlays.
 
-* The Button component supports a `danger` variant anywhere.
-  My design only wants it inside confirmation dialogs.
-
-* Badge supports five colors.
-  My design only wants gray, amber and red for task priorities.
-
-* Cards support flat and elevated variants.
-  My design reserves elevation only for overlays.
-
-From the component code alone, every option is technically correct.
-
-Only `design.md` explains which choice represents the product's design language.
-
-These gaps became the measurement instrument.
-
----
+From the component code alone, every option is technically valid. Only
+`design.md` explains which choice matches the product's actual design language —
+and these gaps became the measurement instrument. Full list and scoring rubric:
+[`experiment/scoring-rubric.md`](experiment/scoring-rubric.md).
 
 ## The run protocol
 
-To reduce randomness, I ran six completely isolated agents.
+To reduce randomness, I ran six completely isolated agents:
 
-* Three runs with `design.md`
-* Three runs without it
+- Three runs **with** `design.md`
+- Three runs **without** it
 
-Each run started in a fresh session.
+Each run started in a fresh session, each agent only saw its own version of the
+project, and each received the exact same frozen prompt. The agents never saw the
+scoring rubric.
 
-Each agent only saw its own version of the project.
+After every build finished, I scored the outputs against a rubric written
+*before* running the experiment, covering:
 
-Each received the exact same frozen prompt.
+- Component reuse
+- Token discipline
+- Composition
+- State handling
+- Correctness on the intent gaps
+- Consistency across the three repeat runs
 
-After every build finished, I scored the outputs using a rubric I wrote before running the experiment.
+Full protocol: [`experiment/run-protocol.md`](experiment/run-protocol.md).
 
-The rubric looked at:
-
-* component reuse
-* token discipline
-* composition
-* state handling
-* intended design decisions
-* consistency across runs
-and more
-
-Check scoring-rubric.md for more details.
-
-The agents never saw this rubric.
-
----
-
-# The results
+## The results
 
 The numbers surprised me.
 
-**Version 1 (with `design.md`)**
+| | Score | |
+|---|:-:|:-:|
+| **To-Do (With Design.md)** | 27 / 27 | **100%** |
+| **To-Do (Without Design.md)** | 16 / 27 | **59%** |
 
-**27 / 27**
+But the interesting part wasn't the score — it was *where* the failures happened.
 
-**100%**
+Every agent run without `design.md` independently converged on the same
+conventions:
 
-**Version 2 (without)**
+- Green badge for low priority
+- Destructive (red) delete buttons on every row
+- Inline confirmation instead of a dialog
+- White page background
+- New tasks appended to the bottom
 
-**16 / 27**
+These are simply the common conventions models have learned from thousands of
+existing interfaces. Meanwhile, all three agents run *with* `design.md` read it
+and produced nearly identical applications — same layout, same dialog structure,
+same component variants, almost identical wording.
 
-**59%**
+The biggest difference wasn't quality. It was consistency.
 
-But the interesting part wasn't the score.
+Full breakdown: [`experiment/results.md`](experiment/results.md). Screenshots:
+[`experiment/runs/screenshots/`](experiment/runs/screenshots).
 
-It was *where* the failures happened.
-
-Every agent run without design.md independently chose the same conventions:
-
-* green badge for low priority
-* destructive delete buttons on every row
-* inline confirmation instead of a dialog
-* white page background
-* new tasks appended to the bottom
-
-They're simply common conventions the models have learned from thousands of existing interfaces.
-
-All three agents run with design.md, read it, and produced nearly identical applications.
-
-Same layout.
-
-Same dialog structure.
-
-Same component variants.
-
-Almost identical wording.
-
-The biggest difference wasn't quality.
-
-It was consistency.
-
-For details results check results.md
----
-
-# Experiment Conclusion
+## Conclusion
 
 The experiment changed how I think about design documentation.
 
-## 1. `design.md` matters exactly where convention and intent diverge.
+**1. `design.md` matters exactly where convention and intent diverge.** When
+industry convention already matched my design, the document added almost
+nothing — all agents correctly muted completed tasks, used the EmptyState
+component, and respected the existing tokens, with or without the doc. They
+didn't need documentation because those choices were already obvious.
+Documentation became valuable only where my product intentionally broke from
+convention.
 
-When industry convention already matched my design, the document added almost nothing.
+**2. The biggest benefit is reproducibility, not quality.** The `design.md` runs
+produced almost identical outputs across all three repeats. The runs without it
+weren't *bad* — the problem was that every run represented a slightly different
+product.
 
-All agents correctly used muted completed tasks.
+**3. Agents never leave blanks.** Whenever the design system had a hole, every
+agent invented something to fill it:
 
-All used the EmptyState component.
+- There was no Priority Select component — every run quietly built one, the same way.
+- There was no Dialog component — agents with `design.md` followed the recipe it
+  described; agents without it invented an inline confirmation instead.
+- There were no icons — some agents drew SVG trash cans, others used plain glyphs.
 
-All respected the existing design tokens.
+Agents don't stop when something is missing. They fill the gap — with your
+intent if you wrote it down, with the internet's average intent if you didn't.
 
-They didn't need documentation because those choices were already obvious.
+## The real takeaway
 
-Documentation became valuable only where my product intentionally broke from convention.
+Before running this experiment, I thought `design.md` was documentation. Now I
+think it's something else.
 
----
+It's the place where design intent lives. Components describe capability. Tokens
+describe consistency. `design.md` describes judgment — it's where you explain the
+decisions that cannot be inferred from code.
 
-## 2. The biggest benefit is reproducibility.
-
-The agent runs with design.md produced almost identical outputs across all three runs.
-
-The designs without design.md weren't bad. The problem was that every run represented a slightly different product.
-
----
-
-## 3. Agents never leave blanks.
-
-Whenever the design system had a hole, every agent invented something.
-
-For Example:
-
-There was no Priority Select component. Every run quietly built one.
-
-There was no Dialog component. The agents with design.md followed the recipe described in `design.md`. The agents without design.md invented inline confirmation instead.
-
-There were no icons. Some agents drew SVG trash cans. Others used simple glyphs.
-
-Agents don't stop when something is missing. They fill the gap.
-
----
-
-# The real takeaway
-
-Before running this experiment, I thought `design.md` was documentation.
-
-Now I think it's something else.
-
-It's the place where design intent lives.
-
-Components describe capability.
-
-Tokens describe consistency.
-
-`design.md` describes judgment.
-
-It's where you explain the decisions that cannot be inferred from code.
-
-And there's another lesson that only became obvious after seeing the results.
-
-Every mistake an agent makes is feedback for the specification itself.
-
-If the agent consistently misunderstands something, that's usually not an AI problem. It's a missing design rule.
-
-Update the document.
-
-Run it again.
-
-Repeat.
-
-Eventually, the document stops being something you wrote from memory and becomes something shaped by actual evidence.
+There's a second lesson that only became obvious after seeing the results: every
+mistake an agent makes is feedback for the specification itself. If an agent
+consistently misunderstands something, that's usually not an AI problem — it's a
+missing design rule. Update the document, run it again, repeat. Eventually, the
+document stops being something you wrote from memory and becomes something shaped
+by actual evidence.
