@@ -1,32 +1,25 @@
 ![Experimenting with Design.md](assets/header.png)
 
-# What is `design.md`?
+# What is Design.md?
 
-A few weeks back, I kept seeing tweets about `design.md` all over my feed.
+A few weeks back, I kept seeing tweets about Design.md all over my feed.
 
-> *"You should ship a design.md with your design system."*
+> *"You should ship a Design.md with your design system."*
 >
 > *"AI agents understand products much better if you have one."*
 
 I didn't actually understand why — so I thought I'd build something to test it.
 
-This repo is the experiment: the templates, the six agent runs, the scoring, and
-the results. The sections below walk through it; the linked files have the full
-detail.
+## The Question
 
-## The question
+>If a project already has a mature design system — semantic tokens, reusable components, good code — what exactly is left for a markdown file to do?
 
-If a project already has a mature design system — semantic tokens, reusable
-components, good code — what exactly is left for a markdown file to do?
-
-An AI agent can already see your design system and inspect every component. It
-can open `Button.jsx`, see every available variant, read the spacing tokens, and
-understand the API of every component.
+An AI agent can already see your design system and inspect every component. It can open `Button.jsx`, see every available variant, read the spacing tokens, and understand the API of every component.
 
 So what information is actually missing? Would an agent build something
 genuinely different with `design.md` than without it?
 
-## The idea
+## The Plan
 
 The plan was simple: build a to-do list application, twice.
 
@@ -39,40 +32,34 @@ Both versions share the exact same coded component library and the same CSS
 variables. The only difference is that one folder has a `design.md` in it. I then
 gave an AI agent the same prompt against both versions:
 
-> Build a to-do application with add, delete, complete, filtering, priorities,
-> confirmation before delete, and empty states.
+> *Build a to-do application with add, delete, complete, filtering, priorities, confirmation before delete, and empty states.*
 
-No design instructions. No screenshots. No examples. The only variable was the
-presence of `design.md`. Full prompt: [`experiment/task-prompt.md`](experiment/task-prompt.md).
+No design instructions. No screenshots. No examples. The only variable was the presence of `design.md`. 
 
-## Making the experiment measurable
+Full prompt: [`experiment/task-prompt.md`](experiment/task-prompt.md).
 
-To measure the difference between the two versions, I intentionally designed
-situations where the component library allowed multiple valid choices, while the
-product only wanted one — call them **intent gaps**. For example:
+## Measuring the Experiment
 
-- The Button component supports a `danger` variant anywhere. My design only wants
-  it inside confirmation dialogs.
-- Badge supports five colors. My design only wants gray, amber, and red for task
-  priorities.
-- Cards support `flat` and `elevated` variants. My design reserves elevation only
-  for overlays.
+To measure the difference between the two versions, I intentionally designed situations where the component library allowed multiple valid choices, while the product only wanted one — call them **intent gaps**. For example:
+
+- The Button component supports a `danger` variant anywhere. My design only wants it inside confirmation dialogs.
+- Badge supports five colors. My design only wants gray, amber, and red for task priorities.
+- Cards support `flat` and `elevated` variants. My design reserves elevation only for overlays.
 
 From the component code alone, every option is technically valid. Only
-`design.md` explains which choice matches the product's actual design language —
-and these gaps became the measurement instrument. Full list and scoring rubric:
+`design.md` explains which choice matches the product's actual design language and these gaps became the measurement instrument. 
+
+Full list and scoring rubric:
 [`experiment/scoring-rubric.md`](experiment/scoring-rubric.md).
 
-## The run protocol
+## The Run Protocol
 
 To reduce randomness, I ran six completely isolated agents:
 
 - Three runs **with** `design.md`
 - Three runs **without** it
 
-Each run started in a fresh session, each agent only saw its own version of the
-project, and each received the exact same frozen prompt. The agents never saw the
-scoring rubric.
+Each run started in a fresh session, each agent only saw its own version of the project, and each received the exact same frozen prompt. The agents never saw the scoring rubric.
 
 After every build finished, I scored the outputs against a rubric written
 *before* running the experiment, covering:
@@ -86,7 +73,7 @@ After every build finished, I scored the outputs against a rubric written
 
 Full protocol: [`experiment/run-protocol.md`](experiment/run-protocol.md).
 
-## The results
+## The Results
 
 The numbers surprised me.
 
@@ -144,7 +131,7 @@ agent invented something to fill it:
 Agents don't stop when something is missing. They fill the gap — with your
 intent if you wrote it down, with the internet's average intent if you didn't.
 
-## The real takeaway
+## The Takeaway
 
 Before running this experiment, I thought `design.md` was documentation. Now I
 think it's something else.
