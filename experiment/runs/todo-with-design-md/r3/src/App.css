@@ -1,0 +1,116 @@
+.app {
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+.app__column {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.app__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+/* Add-task row */
+.app__add-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.app__add-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.app__priority-select {
+  height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.app__priority-select:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Filter bar */
+.app__filters {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Task list */
+.app__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.task-row .checkbox {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-row .checkbox__label {
+  overflow-wrap: anywhere;
+}
+
+.task-row--done .checkbox__label {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+/* Delete confirmation dialog */
+.dialog-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.dialog {
+  width: 100%;
+  max-width: 400px;
+}
+
+.dialog__question {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.dialog__actions {
+  margin-top: var(--space-4);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}

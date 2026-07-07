@@ -1,0 +1,53 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "todo-with-design-md",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/templates/todo-with-design-md"],
+      "port": 5173
+    },
+    {
+      "name": "todo-without-design-md",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/templates/todo-without-design-md"],
+      "port": 5174
+    },
+    {
+      "name": "with-design-md-r1",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/runs/todo-with-design-md/r1", "--", "--port", "5175"],
+      "port": 5175
+    },
+    {
+      "name": "with-design-md-r2",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/runs/todo-with-design-md/r2", "--", "--port", "5176"],
+      "port": 5176
+    },
+    {
+      "name": "with-design-md-r3",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/runs/todo-with-design-md/r3", "--", "--port", "5178"],
+      "port": 5178
+    },
+    {
+      "name": "without-design-md-r1",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/runs/todo-without-design-md/r1", "--", "--port", "5179"],
+      "port": 5179
+    },
+    {
+      "name": "without-design-md-r2",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/runs/todo-without-design-md/r2", "--", "--port", "5180"],
+      "port": 5180
+    },
+    {
+      "name": "without-design-md-r3",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "experiment/runs/todo-without-design-md/r3", "--", "--port", "5181"],
+      "port": 5181
+    }
+  ]
+}

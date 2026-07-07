@@ -1,0 +1,115 @@
+body {
+  background: var(--color-background);
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.app__title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+/* Add-task row */
+.app__add-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.app__add-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.app__priority-select {
+  height: 36px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+.app__priority-select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Filter bar */
+.app__filters {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Task list */
+.app__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.task .checkbox {
+  min-width: 0;
+}
+
+.task--completed .checkbox__label {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.task__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* Delete confirmation dialog */
+.app__scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.app__dialog {
+  width: 100%;
+  max-width: 400px;
+}
+
+.app__dialog-text {
+  margin: 0 0 var(--space-5);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  overflow-wrap: break-word;
+}
+
+.app__dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
