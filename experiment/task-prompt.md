@@ -1,4 +1,4 @@
-# Frozen task prompt
+# Task Prompt
 
 This exact prompt is given verbatim to every run agent, in both versions.
 Never edit it between runs. It deliberately names features but stays silent

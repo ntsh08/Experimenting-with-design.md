@@ -33,6 +33,8 @@ The plan was simple: build a to-do list application, twice.
 Both versions share the exact same coded component library and the same CSS
 variables. The only difference is that one folder has a `design.md` in it. I then gave an AI agent the same prompt against both versions:
 
+![Experimenting with Design.md](assets/prompt.png)
+
 > *Build a to-do application with add, delete, complete, filtering, priorities, confirmation before delete, and empty states.*
 
 No design instructions. No screenshots. No examples. The only variable was the presence of `design.md`.
@@ -112,21 +114,15 @@ Full breakdown: [`experiment/results.md`](experiment/results.md). Screenshots:
 
 The experiment changed how I think about design documentation.
 
-**1. `design.md` matters exactly where convention and intent diverge.** When
-industry convention already matched my design, the document added almost
-nothing — all agents correctly muted completed tasks, used the EmptyState
-component, and respected the existing tokens, with or without the doc. They
-didn't need documentation because those choices were already obvious.
-Documentation became valuable only where my product intentionally broke from
-convention.
+**1. `design.md` matters exactly where convention and intent diverge:** 
 
-**2. The biggest benefit is reproducibility, not quality.** The `design.md` runs
-produced almost identical outputs across all three repeats. The runs without it
-weren't *bad* — the problem was that every run represented a slightly different
-product.
+When industry convention already matched my design, the document added almost nothing — all agents correctly muted completed tasks, used the EmptyState component, and respected the existing tokens, with or without the doc. They didn't need documentation because those choices were already obvious. Documentation became valuable only where my product intentionally broke from convention.
 
-**3. Agents never leave blanks.** Whenever the design system had a hole, every
-agent invented something to fill it:
+**2. The biggest benefit is reproducibility, not quality:** 
+The `design.md` runs produced almost identical outputs across all three repeats. The runs without it weren't *bad* — the problem was that every run represented a slightly different product.
+
+**3. Agents never leave blanks:** 
+Whenever the design system had a hole, every agent invented something to fill it:
 
 - There was no Priority Select component — every run quietly built one, the same way.
 - There was no Dialog component — agents with `design.md` followed the recipe it

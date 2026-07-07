@@ -1,9 +1,15 @@
-# Results — Round 1 (July 5, 2026)
+# Results
 
 Six runs: three fresh agents per version, identical frozen prompt, fresh isolated
 folder each. All six compiled, shipped every feature, reused all 7 components, and
 had perfect token discipline (zero raw hex colors in app code). The differences are
 entirely about *intent* — exactly what the experiment was designed to isolate.
+
+
+| | Score | |
+|---|:-:|:-:|
+| **V1: To-Do (With Design.md)** | 27 / 27 | **100%** |
+| **V2: To-Do (Without Design.md)** | 16 / 27 | **59%** |
 
 ## Gap scorecard (1–9 from scoring-rubric.md)
 
@@ -19,8 +25,6 @@ entirely about *intent* — exactly what the experiment was designed to isolate.
 | 8 decoy tokens untouched | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 9 EmptyState, case-specific copy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **Score** | **9/9** | **9/9** | **9/9** | **5/9** | **5/9** | **6/9** |
-
-**To-Do (With Design.md): 27/27 (100%). To-Do (Without Design.md): 16/27 (59%).**
 
 ## Composition (rules only stated in design.md)
 

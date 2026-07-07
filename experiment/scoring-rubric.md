@@ -1,10 +1,5 @@
 # Scoring rubric
 
-**PRIVATE. Run agents must never see this file.** It lives outside both version
-folders; run agents are launched with access to their version folder only.
-
-## Scoring rubric
-
 Score each run on every dimension. For gaps: pass / fail per gap.
 
 | Dimension | How to check |
