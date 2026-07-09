@@ -121,9 +121,13 @@ The experiment changed how I think about design documentation.
 
 When industry convention already matched my design, the document added almost nothing — all agents correctly muted completed tasks, used the EmptyState component, and respected the existing tokens, with or without the doc. They didn't need documentation because those choices were already obvious. Documentation became valuable only where my product intentionally broke from convention.
 
+<br>
+
 **2. The biggest benefit is reproducibility, not quality:** 
 
 The `design.md` runs produced almost identical outputs across all three repeats. The runs without it weren't *bad* — the problem was that every run represented a slightly different product.
+
+<br>
 
 **3. Agents never leave blanks:** 
 
