@@ -10,6 +10,7 @@ A few weeks back, I kept seeing tweets about Design.md all over my feed.
 
 I didn't actually understand why — so I thought I'd build something to test it.
 
+<br>
 
 ### The Question
 
@@ -20,6 +21,7 @@ An AI agent can already see your design system and inspect every component. It c
 So what information is actually missing? Would an agent build something
 genuinely different with `design.md` than without it?
 
+<br>
 
 ### The Plan
 
@@ -35,12 +37,12 @@ variables. The only difference is that one folder has a `design.md` in it. I the
 
 ![Experimenting with Design.md](assets/prompt.png)
 
-> *Build a to-do application with add, delete, complete, filtering, priorities, confirmation before delete, and empty states.*
 
 No design instructions. No screenshots. No examples. The only variable was the presence of `design.md`.
 
 Full prompt: [`experiment/task-prompt.md`](experiment/task-prompt.md).
 
+<br>
 
 ### Measuring the Experiment
 
@@ -56,6 +58,7 @@ From the component code alone, every option is technically valid. Only
 Full list and scoring rubric:
 [`experiment/scoring-rubric.md`](experiment/scoring-rubric.md).
 
+<br>
 
 ### The Run Protocol
 
@@ -78,16 +81,13 @@ After every build finished, I scored the outputs against a rubric written
 
 Full protocol: [`experiment/run-protocol.md`](experiment/run-protocol.md).
 
+<br>
 
 ### The Results
 
 ![Experimenting with Design.md](assets/result1.png)
 ![Experimenting with Design.md](assets/result2.png)
 
-| | Score | |
-|---|:-:|:-:|
-| **To-Do (With Design.md)** | 27 / 27 | **100%** |
-| **To-Do (Without Design.md)** | 16 / 27 | **59%** |
 
 But the interesting part wasn't the score — it was *where* the failures happened.
 
@@ -111,6 +111,7 @@ The biggest difference wasn't quality. It was consistency.
 Full breakdown: [`experiment/results.md`](experiment/results.md). Screenshots:
 [`experiment/runs/screenshots/`](experiment/runs/screenshots).
 
+<br>
 
 ### Conclusion
 
@@ -136,6 +137,7 @@ Whenever the design system had a hole, every agent invented something to fill it
 Agents don't stop when something is missing. They fill the gap — with your
 intent if you wrote it down, with the internet's average intent if you didn't.
 
+<br>
 
 ### The Takeaway
 
